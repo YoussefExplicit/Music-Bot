@@ -17,7 +17,7 @@ class Update extends Command {
 
   async run(message) {
     const { stdout, stderr, err } = await exec(`git pull ${require("../package.json").repository.url.split("+")[1]}`, { cwd: path.join(__dirname, "../") }).catch(err => ({ err }));
-    if (err) console.log(err);
+    if (err) this.client.log(err);
     const out = [];
     if (stdout) out.push(stdout);
     if (stderr) out.push(stderr);

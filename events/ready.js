@@ -8,7 +8,7 @@ class Ready extends Event {
   }
 
   async run() {
-    console.log(`${this.client.user.tag} is ready in ${this.client.guilds.size} guild and serving ${this.client.guilds.reduce((c, p) => c + p.memberCount, 0)} users!`);
+    this.client.log(`${this.client.user.tag} is ready in ${this.client.guilds.size} guild and serving ${this.client.guilds.reduce((c, p) => c + p.memberCount, 0)} users!`);
     this.client.guilds.forEach(g => {
       if (!this.client.settings.has(g.id)) this.client.setDefaultGuildSettings(g.id);
     });

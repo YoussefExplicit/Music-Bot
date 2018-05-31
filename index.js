@@ -56,6 +56,10 @@ class Client extends Discord.Client {
     current[name] = val;
     this.settings.set(id, current);
   }
+
+  log(message) {
+    console.log(`[${new Date().toLocaleString()}] > ${message}`);
+  }
 }
 
 const client = new Client();
@@ -66,6 +70,7 @@ for (let i = 0; i < jsfiles.length; i++) {
   const command = new file(client);
   if (typeof command.run !== 'function') throw Error(`No run function found in ${jsfiles[i]}`);
   client.commands.set(command.name, command);
+  client.log(`Command loaded: ${command.name} `);
   if (command && command.aliases && command.aliases.constructor.name === 'Array') {
     for (let i = 0; i < command.aliases.length; i++) {
       client.aliases.set(command.aliases[i], command);
@@ -77,10 +82,11 @@ for (let i = 0; i < jsevents.length; i++) {
   if (!jsevents.length) throw Error('No javascript event files found!');
   const file = require(`./events/${jsevents[i]}`);
   const event = new file(client, file);
+  client.log(`Event loaded: ${event.name}`);
   if (typeof event.run !== 'function') throw Error(`No run function found in ${jsevents[i]}`);
   client.on(jsevents[i].split('.')[0], (...args) => event.run(...args));
 }
 
 client.login(token);
 
-process.on('unhandledRejection', err => console.log(err));
+process.on('unhandledRejection', err => client.log(err));

@@ -44,7 +44,7 @@ class Message extends Event {
       if (cmd.category === 'Owner' && message.author.id !== ownerid) return;
       if (cmd.category === 'Administrator' && message.member.permissions.has('ADMINISTRATOR')) return;
 
-      console.log(`CMD RUN: ${message.author.tag} (${message.author.id}) used command: ${cmd.name}`);
+      this.client.log(`CMD RUN: ${message.author.tag} (${message.author.id}) used command: ${cmd.name}`);
       await cmd.run(message, args);
     } else if (this.client.aliases.has(command)) {
       const cmd = this.client.aliases.get(command);
@@ -59,7 +59,7 @@ class Message extends Event {
           return message.channel.send(embed);
         }
       }
-      console.log(`CMD RUN: ${message.author.tag} (${message.author.id}) used command: ${cmd.name}`);
+      this.client.log(`CMD RUN: ${message.author.tag} (${message.author.id}) used command: ${cmd.name}`);
       await cmd.run(message, args);
     } else return;
   }
