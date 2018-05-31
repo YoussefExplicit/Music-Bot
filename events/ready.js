@@ -14,7 +14,7 @@ class Ready extends Event {
     });
 
     if (fs.existsSync('./data/reboot.json')) {
-      const data = JSON.parse(fs.readFileSync('./data/reboot.json', "utf8"));
+      const data = JSON.parse(fs.readFileSync('./data/reboot.json', 'utf8'));
       const channel = this.client.channels.get(data.channelID);
       const message = await channel.messages.fetch(data.messageID);
       message.edit('Successfully rebooted the bot!');

@@ -26,6 +26,7 @@ class Help extends Command {
   
     const sorted = this.client.commands.filter(c => c.category !== 'Owner');
 
+    if (!type) {
       let output = '';
       const pg = Number(page);
       for (const cmd of sorted.values()) {
@@ -34,12 +35,12 @@ class Help extends Command {
         }
         num++;
       }
-  
+    
       if (num) {
         helpembed.setTitle(`Page ${page}/${Math.ceil(num / perpage)}`)
           .addField('Commands', output);
       }
-  
+    }
     if (this.client.commands.has(type) || this.client.aliases.has(type)) {
       const cm = this.client.commands.get(type) || this.client.aliases.get((type));
       helpembed.setTitle(cm.name)
