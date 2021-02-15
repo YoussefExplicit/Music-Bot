@@ -28,3 +28,4 @@ This a music bot crafted in discord.js master, a discord api wrapper. So far, th
 This will be updated over time, so ensure to update your own version alongside mine to ensure that all of the files are up to date. If you want to make a pull request, go for it and ensure you include all of the information necessary and describe it as much as you could. "# Music-Bot" 
 
 I've got to give some credit to York from An Idiot's Guide. This command handler was inspired by his from Misaki, an anime based bot which could be found [here](https://github.com/NotAWeebDev/Misaki).
+[![Run on Repl.it](https://repl.it/badge/github/YoussefExplicit/Music-Bot)](https://repl.it/github/YoussefExplicit/Music-Bot)
